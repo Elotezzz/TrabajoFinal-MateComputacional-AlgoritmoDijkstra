@@ -6,7 +6,7 @@
 #include <limits>
 #include <sstream>
 
-namespace ProyectoMateComputacional {
+namespace TrabajoFinalMateComputacionalAlgoritmoDijkstra {
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -18,9 +18,9 @@ namespace ProyectoMateComputacional {
 	using namespace Microsoft::VisualBasic;
 
 	/// <summary>
-	/// Resumen de Prueba
+	/// Resumen de Representacion_Dijkstra
 	/// </summary>
-	public ref class Prueba : public System::Windows::Forms::Form
+	public ref class Representacion_Dijkstra : public System::Windows::Forms::Form
 	{
 	private:
 		Grafo* grafo;
@@ -52,7 +52,7 @@ namespace ProyectoMateComputacional {
 		System::Windows::Forms::Label^ lblDijOrigen;
 		System::Windows::Forms::Label^ lblDijDestino;
 	public:
-		Prueba(void)
+		Representacion_Dijkstra(void)
 		{
 			InitializeComponent();
 			// Inicializamos el puntero de nuestro grafo
@@ -194,7 +194,7 @@ namespace ProyectoMateComputacional {
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
 		/// </summary>
-		~Prueba()
+		~Representacion_Dijkstra()
 		{
 
 			if (components)
@@ -261,13 +261,14 @@ namespace ProyectoMateComputacional {
 		   // Left-side origin/destination controls removed (Dijkstra controls are on the right)
 	private: System::Windows::Forms::Label^ lblMode;
 	private: System::Windows::Forms::Label^ lblMatrixHint;
+private: System::ComponentModel::IContainer^ components;
 	protected:
 
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -276,6 +277,7 @@ namespace ProyectoMateComputacional {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->txtNodos = (gcnew System::Windows::Forms::NumericUpDown());
 			this->Btn_Generar_Grafo = (gcnew System::Windows::Forms::Button());
 			this->rbAleatorio = (gcnew System::Windows::Forms::RadioButton());
@@ -283,110 +285,189 @@ namespace ProyectoMateComputacional {
 			this->txtManualInput = (gcnew System::Windows::Forms::TextBox());
 			this->Panel_Grafo = (gcnew System::Windows::Forms::Panel());
 			this->lblAviso = (gcnew System::Windows::Forms::Label());
-
+			this->lblMatrixHint = (gcnew System::Windows::Forms::Label());
+			this->lblMode = (gcnew System::Windows::Forms::Label());
+			this->nodeTimer = (gcnew System::Windows::Forms::Timer(this->components));
+			this->cmbDijOrigen = (gcnew System::Windows::Forms::ComboBox());
+			this->cmbDijDestino = (gcnew System::Windows::Forms::ComboBox());
+			this->btnRunDijkstra = (gcnew System::Windows::Forms::Button());
+			this->txtDijkstraInfo = (gcnew System::Windows::Forms::TextBox());
+			this->lblDijOrigen = (gcnew System::Windows::Forms::Label());
+			this->lblDijDestino = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->txtNodos))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// txtNodos
 			// 
-			this->txtNodos->Location = System::Drawing::Point(27, 106);
+			this->txtNodos->Location = System::Drawing::Point(20, 86);
+			this->txtNodos->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtNodos->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 16, 0, 0, 0 });
 			this->txtNodos->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 7, 0, 0, 0 });
 			this->txtNodos->Name = L"txtNodos";
-			this->txtNodos->Size = System::Drawing::Size(120, 22);
+			this->txtNodos->Size = System::Drawing::Size(90, 20);
 			this->txtNodos->TabIndex = 1;
 			this->txtNodos->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 7, 0, 0, 0 });
-			this->txtNodos->ValueChanged += gcnew System::EventHandler(this, &Prueba::txtNodos_ValueChanged);
+			this->txtNodos->ValueChanged += gcnew System::EventHandler(this, &Representacion_Dijkstra::txtNodos_ValueChanged);
+			// 
+			// Btn_Generar_Grafo
+			// 
+			this->Btn_Generar_Grafo->Location = System::Drawing::Point(34, 135);
+			this->Btn_Generar_Grafo->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Btn_Generar_Grafo->Name = L"Btn_Generar_Grafo";
+			this->Btn_Generar_Grafo->Size = System::Drawing::Size(56, 19);
+			this->Btn_Generar_Grafo->TabIndex = 2;
+			this->Btn_Generar_Grafo->Text = L"Presioname";
+			this->Btn_Generar_Grafo->UseVisualStyleBackColor = true;
+			this->Btn_Generar_Grafo->Click += gcnew System::EventHandler(this, &Representacion_Dijkstra::Btn_Generar_Grafo_Click);
 			// 
 			// rbAleatorio
 			// 
 			this->rbAleatorio->AutoSize = true;
-			this->rbAleatorio->Location = System::Drawing::Point(27, 40);
+			this->rbAleatorio->Checked = true;
+			this->rbAleatorio->Location = System::Drawing::Point(20, 32);
+			this->rbAleatorio->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->rbAleatorio->Name = L"rbAleatorio";
-			this->rbAleatorio->Size = System::Drawing::Size(80, 21);
+			this->rbAleatorio->Size = System::Drawing::Size(66, 17);
 			this->rbAleatorio->TabIndex = 0;
 			this->rbAleatorio->TabStop = true;
 			this->rbAleatorio->Text = L"Aleatorio";
 			this->rbAleatorio->UseVisualStyleBackColor = true;
-			this->rbAleatorio->Checked = true;
 			// 
 			// rbManual
 			// 
 			this->rbManual->AutoSize = true;
-			this->rbManual->Location = System::Drawing::Point(27, 60);
+			this->rbManual->Location = System::Drawing::Point(20, 49);
+			this->rbManual->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->rbManual->Name = L"rbManual";
-			this->rbManual->Size = System::Drawing::Size(70, 21);
+			this->rbManual->Size = System::Drawing::Size(60, 17);
 			this->rbManual->TabIndex = 0;
 			this->rbManual->TabStop = true;
 			this->rbManual->Text = L"Manual";
 			this->rbManual->UseVisualStyleBackColor = true;
-			this->rbManual->CheckedChanged += gcnew System::EventHandler(this, &Prueba::rbManual_CheckedChanged);
+			this->rbManual->CheckedChanged += gcnew System::EventHandler(this, &Representacion_Dijkstra::rbManual_CheckedChanged);
 			// 
 			// txtManualInput
 			// 
-			this->txtManualInput->Location = System::Drawing::Point(12, 360);
+			this->txtManualInput->AcceptsTab = true;
+			this->txtManualInput->Location = System::Drawing::Point(9, 292);
+			this->txtManualInput->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtManualInput->Multiline = true;
 			this->txtManualInput->Name = L"txtManualInput";
 			this->txtManualInput->ScrollBars = System::Windows::Forms::ScrollBars::Both;
-			this->txtManualInput->Size = System::Drawing::Size(140, 150);
+			this->txtManualInput->Size = System::Drawing::Size(213, 201);
 			this->txtManualInput->TabIndex = 10;
 			this->txtManualInput->Visible = false;
-			this->txtManualInput->AcceptsTab = true;
 			this->txtManualInput->WordWrap = false;
-			// lblMatrixHint (mensaje para generar desde matriz)
-			this->lblMatrixHint = (gcnew System::Windows::Forms::Label());
-			this->lblMatrixHint->Location = System::Drawing::Point(12, 335);
-			this->lblMatrixHint->AutoSize = true;
-			this->lblMatrixHint->Text = L"Generar el grafo a traves de matriz";
-			this->lblMatrixHint->Visible = false;
-			this->Controls->Add(this->lblMatrixHint);
-
-			// lblMode (muestra el modo seleccionado)
-			this->lblMode = (gcnew System::Windows::Forms::Label());
-			this->lblMode->Location = System::Drawing::Point(27, 12);
-			this->lblMode->AutoSize = true;
-			this->lblMode->Visible = false;
-			this->Controls->Add(this->lblMode);
 			// 
-			// Btn_Generar_Grafo
-			// 
-			this->Btn_Generar_Grafo->Location = System::Drawing::Point(45, 166);
-			this->Btn_Generar_Grafo->Name = L"Btn_Generar_Grafo";
-			this->Btn_Generar_Grafo->Size = System::Drawing::Size(75, 23);
-			this->Btn_Generar_Grafo->TabIndex = 2;
-			this->Btn_Generar_Grafo->Text = L"Presioname";
-			this->Btn_Generar_Grafo->UseVisualStyleBackColor = true;
-			this->Btn_Generar_Grafo->Click += gcnew System::EventHandler(this, &Prueba::Btn_Generar_Grafo_Click);
-			// 
-	  // nodeTimer para animacion de nodos
-			this->nodeTimer = (gcnew System::Windows::Forms::Timer());
-			this->nodeTimer->Interval = 250; // ms
-			this->nodeTimer->Tick += gcnew System::EventHandler(this, &Prueba::nodeTimer_Tick);
-
 			// Panel_Grafo
 			// 
-			this->Panel_Grafo->Location = System::Drawing::Point(153, 12);
+			this->Panel_Grafo->Location = System::Drawing::Point(226, 10);
+			this->Panel_Grafo->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Panel_Grafo->Name = L"Panel_Grafo";
-			this->Panel_Grafo->Size = System::Drawing::Size(913, 595);
+			this->Panel_Grafo->Size = System::Drawing::Size(574, 483);
 			this->Panel_Grafo->TabIndex = 3;
-			this->Panel_Grafo->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Prueba::Panel_Grafo_Paint);
-			this->Panel_Grafo->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Prueba::Panel_Grafo_MouseClick);
+			this->Panel_Grafo->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Representacion_Dijkstra::Panel_Grafo_Paint);
+			this->Panel_Grafo->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Representacion_Dijkstra::Panel_Grafo_MouseClick);
 			// 
 			// lblAviso
 			// 
 			this->lblAviso->AutoSize = true;
-			this->lblAviso->Location = System::Drawing::Point(24, 85);
+			this->lblAviso->Location = System::Drawing::Point(18, 69);
+			this->lblAviso->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->lblAviso->Name = L"lblAviso";
-			this->lblAviso->Size = System::Drawing::Size(180, 17);
+			this->lblAviso->Size = System::Drawing::Size(204, 13);
 			this->lblAviso->TabIndex = 0;
 			this->lblAviso->Text = L"Mínimo permitido: 7, Máximo permitido: 16";
 			// 
-
-			// Prueba
+			// lblMatrixHint
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->lblMatrixHint->AutoSize = true;
+			this->lblMatrixHint->Location = System::Drawing::Point(9, 272);
+			this->lblMatrixHint->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblMatrixHint->Name = L"lblMatrixHint";
+			this->lblMatrixHint->Size = System::Drawing::Size(169, 13);
+			this->lblMatrixHint->TabIndex = 0;
+			this->lblMatrixHint->Text = L"Generar el grafo a traves de matriz";
+			this->lblMatrixHint->Visible = false;
+			// 
+			// lblMode
+			// 
+			this->lblMode->AutoSize = true;
+			this->lblMode->Location = System::Drawing::Point(20, 10);
+			this->lblMode->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblMode->Name = L"lblMode";
+			this->lblMode->Size = System::Drawing::Size(0, 13);
+			this->lblMode->TabIndex = 1;
+			this->lblMode->Visible = false;
+			// 
+			// nodeTimer
+			// 
+			this->nodeTimer->Interval = 250;
+			this->nodeTimer->Tick += gcnew System::EventHandler(this, &Representacion_Dijkstra::nodeTimer_Tick);
+			// 
+			// cmbDijOrigen
+			// 
+			this->cmbDijOrigen->Location = System::Drawing::Point(825, 32);
+			this->cmbDijOrigen->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->cmbDijOrigen->Name = L"cmbDijOrigen";
+			this->cmbDijOrigen->Size = System::Drawing::Size(114, 21);
+			this->cmbDijOrigen->TabIndex = 11;
+			// 
+			// cmbDijDestino
+			// 
+			this->cmbDijDestino->Location = System::Drawing::Point(825, 85);
+			this->cmbDijDestino->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->cmbDijDestino->Name = L"cmbDijDestino";
+			this->cmbDijDestino->Size = System::Drawing::Size(114, 21);
+			this->cmbDijDestino->TabIndex = 12;
+			// 
+			// btnRunDijkstra
+			// 
+			this->btnRunDijkstra->Location = System::Drawing::Point(825, 123);
+			this->btnRunDijkstra->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnRunDijkstra->Name = L"btnRunDijkstra";
+			this->btnRunDijkstra->Size = System::Drawing::Size(112, 24);
+			this->btnRunDijkstra->TabIndex = 13;
+			this->btnRunDijkstra->Text = L"Ejecutar Dijkstra";
+			this->btnRunDijkstra->Click += gcnew System::EventHandler(this, &Representacion_Dijkstra::btnRunDijkstra_Click);
+			// 
+			// txtDijkstraInfo
+			// 
+			this->txtDijkstraInfo->Location = System::Drawing::Point(825, 151);
+			this->txtDijkstraInfo->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtDijkstraInfo->Multiline = true;
+			this->txtDijkstraInfo->Name = L"txtDijkstraInfo";
+			this->txtDijkstraInfo->ScrollBars = System::Windows::Forms::ScrollBars::Both;
+			this->txtDijkstraInfo->Size = System::Drawing::Size(226, 342);
+			this->txtDijkstraInfo->TabIndex = 14;
+			// 
+			// lblDijOrigen
+			// 
+			this->lblDijOrigen->AutoSize = true;
+			this->lblDijOrigen->Location = System::Drawing::Point(825, 16);
+			this->lblDijOrigen->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblDijOrigen->Name = L"lblDijOrigen";
+			this->lblDijOrigen->Size = System::Drawing::Size(119, 13);
+			this->lblDijOrigen->TabIndex = 15;
+			this->lblDijOrigen->Text = L"Vértice origen (Dijkstra):";
+			// 
+			// lblDijDestino
+			// 
+			this->lblDijDestino->AutoSize = true;
+			this->lblDijDestino->Location = System::Drawing::Point(825, 69);
+			this->lblDijDestino->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->lblDijDestino->Name = L"lblDijDestino";
+			this->lblDijDestino->Size = System::Drawing::Size(124, 13);
+			this->lblDijDestino->TabIndex = 16;
+			this->lblDijDestino->Text = L"Vértice destino (Dijkstra):";
+			// 
+			// Representacion_Dijkstra
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1122, 653);
+			this->ClientSize = System::Drawing::Size(1057, 531);
+			this->Controls->Add(this->lblMatrixHint);
+			this->Controls->Add(this->lblMode);
 			this->Controls->Add(this->lblAviso);
 			this->Controls->Add(this->Panel_Grafo);
 			this->Controls->Add(this->Btn_Generar_Grafo);
@@ -394,45 +475,19 @@ namespace ProyectoMateComputacional {
 			this->Controls->Add(this->rbAleatorio);
 			this->Controls->Add(this->rbManual);
 			this->Controls->Add(this->txtManualInput);
-			// Crear controles del panel derecho para Dijkstra
-			this->cmbDijOrigen = (gcnew System::Windows::Forms::ComboBox());
-			this->cmbDijDestino = (gcnew System::Windows::Forms::ComboBox());
-			this->btnRunDijkstra = (gcnew System::Windows::Forms::Button());
-			this->txtDijkstraInfo = (gcnew System::Windows::Forms::TextBox());
-
-			this->cmbDijOrigen->Location = System::Drawing::Point(1100, 40);
-			this->cmbDijOrigen->Size = System::Drawing::Size(150, 24);
-			this->cmbDijDestino->Location = System::Drawing::Point(1100, 80);
-			this->cmbDijDestino->Size = System::Drawing::Size(150, 24);
-			this->btnRunDijkstra->Location = System::Drawing::Point(1100, 120);
-			this->btnRunDijkstra->Size = System::Drawing::Size(150, 30);
-			this->btnRunDijkstra->Text = L"Ejecutar Dijkstra";
-			this->btnRunDijkstra->Click += gcnew System::EventHandler(this, &Prueba::btnRunDijkstra_Click);
-			this->txtDijkstraInfo->Location = System::Drawing::Point(1100, 160);
-			this->txtDijkstraInfo->Size = System::Drawing::Size(300, 300);
-			this->txtDijkstraInfo->Multiline = true;
-			this->txtDijkstraInfo->ScrollBars = System::Windows::Forms::ScrollBars::Both;
-
 			this->Controls->Add(this->cmbDijOrigen);
 			this->Controls->Add(this->cmbDijDestino);
 			this->Controls->Add(this->btnRunDijkstra);
 			this->Controls->Add(this->txtDijkstraInfo);
-
-			// labels for Dijkstra combos
-			this->lblDijOrigen = (gcnew System::Windows::Forms::Label());
-			this->lblDijDestino = (gcnew System::Windows::Forms::Label());
-			this->lblDijOrigen->Location = System::Drawing::Point(1100, 20);
-			this->lblDijOrigen->AutoSize = true;
-			this->lblDijOrigen->Text = L"Vértice origen (Dijkstra):";
-			this->lblDijDestino->Location = System::Drawing::Point(1100, 60);
-			this->lblDijDestino->AutoSize = true;
-			this->lblDijDestino->Text = L"Vértice destino (Dijkstra):";
 			this->Controls->Add(this->lblDijOrigen);
 			this->Controls->Add(this->lblDijDestino);
-			this->Name = L"Prueba";
-			this->Text = L"Prueba";
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Name = L"Representacion_Dijkstra";
+			this->Text = L"Representacion_Dijkstra";
+			this->Load += gcnew System::EventHandler(this, &Representacion_Dijkstra::Representacion_Dijkstra_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->txtNodos))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -704,5 +759,7 @@ namespace ProyectoMateComputacional {
 		this->Panel_Grafo->Refresh();
 	}
 
-	};
+	private: System::Void Representacion_Dijkstra_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
